@@ -8,6 +8,7 @@ namespace Checkout.PaymentGateway.Logic.Models
     {
         none,
         empty_request,
+        incorrect_card_number_format,
         incorrect_currency_format,
         empty_currency,
         negative_or_zero__amount

@@ -4,12 +4,12 @@ using System.Text;
 
 namespace Checkout.PaymentGateway.Logic.Models
 {
-    public class ValidationResult
+    public class DataValidationResult
     {
         private ValidationErrors _error;
         private string _errorMessage;
 
-        public ValidationResult(ValidationErrors error, string errorMessage = null)
+        public DataValidationResult(ValidationErrors error, string errorMessage = null)
         {
             _error = error;
             _errorMessage = errorMessage;

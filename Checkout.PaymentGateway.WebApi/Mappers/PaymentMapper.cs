@@ -20,13 +20,9 @@ namespace Checkout.PaymentGateway.WebApi.Mappers
             {
                 Amount = createPaymentApiModel.Amount,
                 Currency = createPaymentApiModel.Currency,
-                Description = createPaymentApiModel.Description,
-                Recipient = new PaymentRecipient
-                {
-                    AccountNumber = createPaymentApiModel.RecipientAccountNumber,
-                    LastName = createPaymentApiModel.RecipientLastName,
-                    Zip = createPaymentApiModel.RecipientZip
-                }
+                CardNumber = createPaymentApiModel.CardNumber,
+                Cvv = createPaymentApiModel.Cvv,
+                ExpiryMonthDate = createPaymentApiModel.ExpiryMonthDate,
             };
         }
 
@@ -41,10 +37,11 @@ namespace Checkout.PaymentGateway.WebApi.Mappers
             {
                 Amount = payment.Amount,
                 Currency = payment.Currency,
-                Description = payment.Description,
                 Id = payment.Id,
                 RequestedOn = payment.RequestedOn,
-                Status = payment.Status
+                Status = payment.Status,
+                CardNumber = payment.MaskedCardNumber,
+                ExpiryMonthDate = payment.ExpiryMonthDate
             };
         }
     }

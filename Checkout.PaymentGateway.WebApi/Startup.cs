@@ -8,10 +8,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Swashbuckle.AspNetCore.Swagger;
 using Checkout.PaymentGateway.Logic.Dal;
 using Checkout.PaymentGateway.Logic.Managers;
 using Checkout.PaymentGateway.WebApi.Mappers;
 using Checkout.PaymentGateway.Logic.Validators;
+using Checkout.PaymentGateway.Logic.Utils;
 
 namespace Checkout.PaymentGateway.WebApi
 {
@@ -33,6 +35,11 @@ namespace Checkout.PaymentGateway.WebApi
                 options.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
             });
 
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "Payments API", Version = "v1" });
+            });
+
             services.AddScoped<IPaymentMapper, PaymentMapper>();
             services.AddScoped<IErrorToApiErrorCodeMapper, ErrorToApiErrorCodeMapper>();
 
@@ -40,11 +47,22 @@ namespace Checkout.PaymentGateway.WebApi
             services.AddScoped<IPaymentRequestValidator, PaymentRequestValidator>();
             services.AddScoped<IPaymentRepository, PaymentRepository>();
             services.AddScoped<IPaymentManager, PaymentManager>();
+            services.AddScoped<ICardNumberValidator, CardNumberValidator>();
+            services.AddScoped<ICardNumberGuard, CardNumberGuard>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), 
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Payments V1");
+            });
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

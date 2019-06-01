@@ -9,6 +9,7 @@ namespace Checkout.PaymentGateway.WebApi.Models
     {
         empty_request,
         incorrect_currency_format,
+        incorrect_card_format,
         empty_currency,
         negative_or_zero__amount,
         unspecified

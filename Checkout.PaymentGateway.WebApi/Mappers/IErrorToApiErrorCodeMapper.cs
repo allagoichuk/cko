@@ -11,6 +11,5 @@ namespace Checkout.PaymentGateway.WebApi.Mappers
     public interface IErrorToApiErrorCodeMapper
     {
         ApiErrorCodes Map(ValidationErrors validationError);
-
     }
 }

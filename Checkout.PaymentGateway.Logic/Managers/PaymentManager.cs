@@ -4,17 +4,20 @@ using System.Text;
 using System.Threading.Tasks;
 using Checkout.PaymentGateway.Logic.Dal;
 using Checkout.PaymentGateway.Logic.Models;
+using Checkout.PaymentGateway.Logic.Utils;
 using Checkout.PaymentGateway.Logic.Validators;
 
 namespace Checkout.PaymentGateway.Logic.Managers
 {
     public class PaymentManager : IPaymentManager
     {
-        readonly IPaymentRepository _paymentRepository;
+        private readonly IPaymentRepository _paymentRepository;
+        private readonly ICardNumberGuard _cardNumberGuard;
 
-        public PaymentManager(IPaymentRepository paymentRepository)
+        public PaymentManager(IPaymentRepository paymentRepository, ICardNumberGuard cardNumberGuard)
         {
             _paymentRepository = paymentRepository;
+            _cardNumberGuard = cardNumberGuard;
         }
 
         public Task<Payment> AddPayment(PaymentRequest paymentRequest)
@@ -23,10 +26,13 @@ namespace Checkout.PaymentGateway.Logic.Managers
             {
                 Amount = paymentRequest.Amount,
                 Currency = paymentRequest.Currency,
-                Description = paymentRequest.Description,
                 Id = Guid.NewGuid(),
                 RequestedOn = DateTime.Now,
-                Status = PaymentStatus.Authorized
+                Status = PaymentStatus.Authorized,
+                CardNumber = paymentRequest.CardNumber,
+                Cvv = paymentRequest.Cvv,
+                ExpiryMonthDate = paymentRequest.ExpiryMonthDate,
+                MaskedCardNumber = _cardNumberGuard.MaskCardNumner(paymentRequest.CardNumber)
             });
         }
     }

@@ -29,8 +29,10 @@ namespace Checkout.PaymentGateway.WebApi.Controllers
             _errorToApiErrorCodeMapper = errorToApiErrorCodeMapper;
             _paymentRequestValidator = paymentRequestValidator;
         }
-        
+
         [HttpPost]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
         public async Task<IActionResult> Create([FromBody]CreatePaymentApiModel createPaymentApiModel)
         {
             var paymentRequest = _paymentMapper.Map(createPaymentApiModel);
@@ -50,6 +52,8 @@ namespace Checkout.PaymentGateway.WebApi.Controllers
         }
 
         [HttpGet("{id}")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
         public void Get(int id)
         {
         }
