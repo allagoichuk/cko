@@ -23,27 +23,45 @@ namespace Checkout.PaymentGateway.Logic.Managers
 
         public async Task<Payment> AddPayment(PaymentRequest paymentRequest)
         {
-            var payment = new Payment
+            Payment payment = null;
+            try
             {
-                Amount = paymentRequest.Amount,
-                Currency = paymentRequest.Currency,
-                Id = Guid.NewGuid(),
-                RequestedOn = DateTime.Now,
-                Status = PaymentStatus.Requested,
-                CardNumber = paymentRequest.CardNumber,
-                Cvv = paymentRequest.Cvv,
-                ExpiryDate = paymentRequest.ExpiryDate,
-            };
+                payment = new Payment
+                {
+                    Amount = paymentRequest.Amount,
+                    Currency = paymentRequest.Currency,
+                    RequestedOn = DateTime.Now,
+                    Status = PaymentStatus.Requested,
+                    CardNumber = paymentRequest.CardNumber,
+                    Cvv = paymentRequest.Cvv,
+                    ExpiryDate = paymentRequest.ExpiryDate,
+                    IdempotencyUniqueId = UniqueIdempotencyId(paymentRequest)
+                };
 
-            await _paymentRepository.AddOrUpdate(payment);
+                await _paymentRepository.Add(payment);
 
-            var response = await _bankClient.InitiatePayment(payment);
+                var response = await _bankClient.InitiatePayment(payment);
 
-            payment.Status = response.PaymentStatus;
+                payment.Status = response.PaymentStatus;
 
-            await _paymentRepository.AddOrUpdate(payment);
+                await _paymentRepository.Update(payment);
+            }
+            catch(DuplicatePaymentRequestException)
+            {
+                return await _paymentRepository.GetByIdempotencyKey(payment.IdempotencyUniqueId);
+            }
 
             return payment;
+        }
+
+        private string UniqueIdempotencyId(PaymentRequest paymentRequest)
+        {
+            if (paymentRequest.IdempotencyKey == null)
+            {
+                return null;
+            }
+
+            return $"{paymentRequest.IdempotencyKey}|{paymentRequest.CardNumber}|{paymentRequest.Currency}|{paymentRequest.Amount}|{paymentRequest.Cvv}|{paymentRequest.ExpiryDate}";
         }
 
         public Task<Payment> GetPayment(Guid id)

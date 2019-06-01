@@ -10,18 +10,18 @@ namespace Checkout.PaymentGateway.Logic.Services
     {
         private const string FAILED_CARD_NUMBER = "4111111111111111";
 
-        public Task<PaymentResponse> InitiatePayment(Payment payment)
+        public Task<PaymentProcessingResults> InitiatePayment(Payment payment)
         {
             if (payment.CardNumber == FAILED_CARD_NUMBER)
             {
-                return Task.FromResult(new PaymentResponse
+                return Task.FromResult(new PaymentProcessingResults
                 {
                     PaymentStatus = PaymentStatus.Declined,
                     Error = PaymentProcessingErrorCodes.no_credit
                 });
             }
 
-            return Task.FromResult(new PaymentResponse
+            return Task.FromResult(new PaymentProcessingResults
             {
                 PaymentStatus = PaymentStatus.Authorized,
                 Error = PaymentProcessingErrorCodes.none,

@@ -19,5 +19,7 @@ namespace Checkout.PaymentGateway.WebApi.Models
         public string ExpiryDate { get; set; }
 
         public string Cvv { get; set; }
+
+        public string IdempotencyKey { get; set; }
     }
 }

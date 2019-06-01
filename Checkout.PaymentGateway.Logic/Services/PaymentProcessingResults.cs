@@ -2,12 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Checkout.PaymentGateway.Logic.Services
 {
-    public interface IBankClient
+    public class PaymentProcessingResults
     {
-        Task<PaymentProcessingResults> InitiatePayment(Payment payment);
+        public PaymentStatus PaymentStatus { get; set; }
+
+        public PaymentProcessingErrorCodes Error { get; set; }
     }
 }
