@@ -17,7 +17,8 @@ namespace Checkout.PaymentGateway.Logic.Services
                 return Task.FromResult(new PaymentProcessingResults
                 {
                     PaymentStatus = PaymentStatus.Declined,
-                    Error = PaymentProcessingErrorCodes.no_credit
+                    Error = PaymentProcessingErrorCodes.no_credit,
+                    BankIdentifier = Guid.NewGuid().ToString()
                 });
             }
 
@@ -25,6 +26,7 @@ namespace Checkout.PaymentGateway.Logic.Services
             {
                 PaymentStatus = PaymentStatus.Authorized,
                 Error = PaymentProcessingErrorCodes.none,
+                BankIdentifier = Guid.NewGuid().ToString()
             });
         }
     }

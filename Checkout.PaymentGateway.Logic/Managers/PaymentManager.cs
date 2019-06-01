@@ -43,6 +43,7 @@ namespace Checkout.PaymentGateway.Logic.Managers
                 var response = await _bankClient.InitiatePayment(payment);
 
                 payment.Status = response.PaymentStatus;
+                payment.BankIdentifier = response.BankIdentifier;
 
                 await _paymentRepository.Update(payment);
             }

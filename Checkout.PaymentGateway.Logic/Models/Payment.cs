@@ -15,5 +15,6 @@ namespace Checkout.PaymentGateway.Logic.Models
         public string ExpiryDate { get; set; }
         public string Cvv { get; set; }
         public string IdempotencyUniqueId { get; set; }
+        public string BankIdentifier { get; set; }
     }
 }

@@ -21,5 +21,6 @@ namespace Checkout.PaymentGateway.WebApi.Models
         public string Cvv { get; set; }
 
         public string IdempotencyKey { get; set; }
+
     }
 }

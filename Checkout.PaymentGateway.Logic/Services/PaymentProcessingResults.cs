@@ -10,5 +10,7 @@ namespace Checkout.PaymentGateway.Logic.Services
         public PaymentStatus PaymentStatus { get; set; }
 
         public PaymentProcessingErrorCodes Error { get; set; }
+
+        public string BankIdentifier { get; set; }
     }
 }

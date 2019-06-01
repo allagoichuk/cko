@@ -50,6 +50,7 @@ namespace Checkout.PaymentGateway.WebApi.Mappers
                 RequestedOn = payment.RequestedOn,
                 Status = payment.Status,
                 CardNumber = _cardNumberGuard.MaskCardNumner(payment.CardNumber),
+                ExpiryDate = payment.ExpiryDate
             };
         }
     }

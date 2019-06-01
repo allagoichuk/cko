@@ -14,5 +14,6 @@ namespace Checkout.PaymentGateway.WebApi.Models
         public decimal Amount { get; set; }
         public string Currency { get; set; }
         public string CardNumber { get; set; }
+        public string ExpiryDate { get; set; }
     }
 }
