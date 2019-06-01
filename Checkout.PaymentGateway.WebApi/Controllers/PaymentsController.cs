@@ -8,6 +8,7 @@ using Checkout.PaymentGateway.WebApi.Models;
 using Checkout.PaymentGateway.WebApi.Mappers;
 using Microsoft.AspNetCore.Mvc;
 using Checkout.PaymentGateway.Logic.Validators;
+using System.Net;
 
 namespace Checkout.PaymentGateway.WebApi.Controllers
 {
@@ -31,7 +32,7 @@ namespace Checkout.PaymentGateway.WebApi.Controllers
         }
 
         [HttpPost]
-        [ProducesResponseType(200)]
+        [ProducesResponseType(typeof(PaymentApiModel), 200)]
         [ProducesResponseType(400)]
         public async Task<IActionResult> Create([FromBody]CreatePaymentApiModel createPaymentApiModel)
         {
@@ -52,10 +53,18 @@ namespace Checkout.PaymentGateway.WebApi.Controllers
         }
 
         [HttpGet("{id}")]
-        [ProducesResponseType(200)]
-        [ProducesResponseType(400)]
-        public void Get(int id)
+        [ProducesResponseType(typeof(PaymentApiModel), 200)]
+        [ProducesResponseType(404)]
+        public async Task<IActionResult> Get(Guid id)
         {
+            var payment = await _paymentManager.GetPayment(id);
+
+            if (payment == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(_paymentMapper.Map(payment));
         }
 
     }

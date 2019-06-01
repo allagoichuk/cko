@@ -6,6 +6,7 @@ namespace Checkout.PaymentGateway.Logic.Models
 {
     public enum PaymentStatus
     {
+        Requested,
         Pending,
         Authorized,
         CardVerified,

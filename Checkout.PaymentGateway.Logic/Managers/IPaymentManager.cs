@@ -9,5 +9,6 @@ namespace Checkout.PaymentGateway.Logic.Managers
     public interface IPaymentManager
     {
         Task<Payment> AddPayment(PaymentRequest paymentRequest);
+        Task<Payment> GetPayment(Guid id);
     }
 }

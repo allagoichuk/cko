@@ -3,12 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Checkout.PaymentGateway.Logic.Models;
+using Checkout.PaymentGateway.Logic.Utils;
 using Checkout.PaymentGateway.WebApi.Models;
 
 namespace Checkout.PaymentGateway.WebApi.Mappers
 {
     public class PaymentMapper : IPaymentMapper
     {
+        private readonly ICardNumberGuard _cardNumberGuard;
+
+        public PaymentMapper(ICardNumberGuard cardNumberGuard)
+        {
+            _cardNumberGuard = cardNumberGuard;
+        }
+
         public PaymentRequest Map(CreatePaymentApiModel createPaymentApiModel)
         {
             if (createPaymentApiModel == null)
@@ -40,8 +48,8 @@ namespace Checkout.PaymentGateway.WebApi.Mappers
                 Id = payment.Id,
                 RequestedOn = payment.RequestedOn,
                 Status = payment.Status,
-                CardNumber = payment.MaskedCardNumber,
-                ExpiryDate = payment.ExpiryMonthDate
+                CardNumber = _cardNumberGuard.MaskCardNumner(payment.CardNumber),
+                ExpiryDate = payment.ExpiryDate
             };
         }
     }

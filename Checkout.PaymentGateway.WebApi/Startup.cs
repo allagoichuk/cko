@@ -14,6 +14,7 @@ using Checkout.PaymentGateway.Logic.Managers;
 using Checkout.PaymentGateway.WebApi.Mappers;
 using Checkout.PaymentGateway.Logic.Validators;
 using Checkout.PaymentGateway.Logic.Utils;
+using Checkout.PaymentGateway.Logic.Services;
 
 namespace Checkout.PaymentGateway.WebApi
 {
@@ -45,10 +46,13 @@ namespace Checkout.PaymentGateway.WebApi
 
             services.AddScoped<IIsoCurrencyValidator, IsoCurrencyValidator>();
             services.AddScoped<IPaymentRequestValidator, PaymentRequestValidator>();
-            services.AddScoped<IPaymentRepository, PaymentRepository>();
             services.AddScoped<IPaymentManager, PaymentManager>();
             services.AddScoped<ICardDataValidator, CardDataValidator>();
             services.AddScoped<ICardNumberGuard, CardNumberGuard>();
+            services.AddScoped<IBankClient, BankClient>();
+
+            //as it is in-memory storage right now it should be singleton, one DB is plugged, it should Scoped
+            services.AddSingleton<IPaymentRepository, PaymentRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
