@@ -15,8 +15,6 @@ namespace Checkout.PaymentGateway.WebApi.Controllers
     [Route("api/[controller]")]
     public class PaymentsController : Controller
     {
-        public const string IDEMPOTENCY_HEADER = "Idempotency-Key";
-
         private readonly IPaymentManager _paymentManager;
         private readonly IPaymentMapper _paymentMapper;
         private readonly IPaymentRequestValidator _paymentRequestValidator;

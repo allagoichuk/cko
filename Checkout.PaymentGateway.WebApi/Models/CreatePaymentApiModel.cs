@@ -14,12 +14,16 @@ namespace Checkout.PaymentGateway.WebApi.Models
         [Required]
         public string Currency { get; set; }
 
+        [Required]
         public string CardNumber { get; set; }
 
+        [Required]
         public string ExpiryDate { get; set; }
 
+        [Required]
         public string Cvv { get; set; }
 
+        [Required]
         public string IdempotencyKey { get; set; }
 
     }
