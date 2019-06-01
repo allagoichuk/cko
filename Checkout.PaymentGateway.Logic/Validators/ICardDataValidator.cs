@@ -5,8 +5,8 @@ using System.Text;
 
 namespace Checkout.PaymentGateway.Logic.Validators
 {
-    public interface ICardNumberValidator
+    public interface ICardDataValidator
     {
-        DataValidationResult Validate(string cardNumber);
+        DataValidationResult Validate(string cardNumber, string expiryDate, string cvv);
     }
 }

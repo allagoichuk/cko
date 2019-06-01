@@ -8,8 +8,8 @@ namespace Checkout.PaymentGateway.Logic.Validators
     public class PaymentRequestValidator : IPaymentRequestValidator
     {
         IIsoCurrencyValidator _currencyValidator;
-        ICardNumberValidator _cardNumberValidator;
-        public PaymentRequestValidator(IIsoCurrencyValidator currencyValidator, ICardNumberValidator cardNumberValidator)
+        ICardDataValidator _cardNumberValidator;
+        public PaymentRequestValidator(IIsoCurrencyValidator currencyValidator, ICardDataValidator cardNumberValidator)
         {
             _currencyValidator = currencyValidator;
             _cardNumberValidator = cardNumberValidator;
@@ -27,7 +27,7 @@ namespace Checkout.PaymentGateway.Logic.Validators
                 return new DataValidationResult(ValidationErrors.negative_or_zero__amount, "Amount should be more then 0");
             }
 
-            var cardNumberValidationResults = _cardNumberValidator.Validate(paymentRequest.CardNumber);
+            var cardNumberValidationResults = _cardNumberValidator.Validate(paymentRequest.CardNumber, paymentRequest.ExpiryDate, paymentRequest.Cvv);
             if (cardNumberValidationResults.Error != ValidationErrors.none)
             {
                 return cardNumberValidationResults;

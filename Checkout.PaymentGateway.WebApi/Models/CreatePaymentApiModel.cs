@@ -16,7 +16,7 @@ namespace Checkout.PaymentGateway.WebApi.Models
 
         public string CardNumber { get; set; }
 
-        public string ExpiryMonthDate { get; set; }
+        public string ExpiryDate { get; set; }
 
         public string Cvv { get; set; }
     }

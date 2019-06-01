@@ -31,7 +31,7 @@ namespace Checkout.PaymentGateway.Logic.Managers
                 Status = PaymentStatus.Authorized,
                 CardNumber = paymentRequest.CardNumber,
                 Cvv = paymentRequest.Cvv,
-                ExpiryMonthDate = paymentRequest.ExpiryMonthDate,
+                ExpiryMonthDate = paymentRequest.ExpiryDate,
                 MaskedCardNumber = _cardNumberGuard.MaskCardNumner(paymentRequest.CardNumber)
             });
         }

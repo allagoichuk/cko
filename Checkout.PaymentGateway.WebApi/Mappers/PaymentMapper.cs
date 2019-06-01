@@ -22,7 +22,7 @@ namespace Checkout.PaymentGateway.WebApi.Mappers
                 Currency = createPaymentApiModel.Currency,
                 CardNumber = createPaymentApiModel.CardNumber,
                 Cvv = createPaymentApiModel.Cvv,
-                ExpiryMonthDate = createPaymentApiModel.ExpiryMonthDate,
+                ExpiryDate = createPaymentApiModel.ExpiryDate,
             };
         }
 
@@ -41,7 +41,7 @@ namespace Checkout.PaymentGateway.WebApi.Mappers
                 RequestedOn = payment.RequestedOn,
                 Status = payment.Status,
                 CardNumber = payment.MaskedCardNumber,
-                ExpiryMonthDate = payment.ExpiryMonthDate
+                ExpiryDate = payment.ExpiryMonthDate
             };
         }
     }

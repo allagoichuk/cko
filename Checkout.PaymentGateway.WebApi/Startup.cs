@@ -47,7 +47,7 @@ namespace Checkout.PaymentGateway.WebApi
             services.AddScoped<IPaymentRequestValidator, PaymentRequestValidator>();
             services.AddScoped<IPaymentRepository, PaymentRepository>();
             services.AddScoped<IPaymentManager, PaymentManager>();
-            services.AddScoped<ICardNumberValidator, CardNumberValidator>();
+            services.AddScoped<ICardDataValidator, CardDataValidator>();
             services.AddScoped<ICardNumberGuard, CardNumberGuard>();
         }
 
