@@ -1,9 +1,9 @@
-﻿using Checkout.PaymentGateway.Logic.Models;
+﻿using Checkout.Payments.Processor.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Checkout.PaymentGateway.Logic.Services
+namespace Checkout.Payments.Processor.Services
 {
     public class PaymentProcessingResults
     {

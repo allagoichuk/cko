@@ -1,14 +1,14 @@
-﻿using Checkout.PaymentGateway.Logic.Models;
+﻿using Checkout.Payments.Processor.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Checkout.PaymentGateway.Logic.Managers
+namespace Checkout.Payments.Processor.Managers
 {
     public interface IPaymentManager
     {
-        Task<Payment> AddPayment(PaymentRequest paymentRequest);
-        Task<Payment> GetPayment(Guid id);
+        Task<Models.Payment> AddPayment(PaymentRequest paymentRequest);
+        Task<Models.Payment> GetPayment(Guid id);
     }
 }

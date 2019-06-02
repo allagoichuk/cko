@@ -2,19 +2,19 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using Checkout.PaymentGateway.Logic.Models;
+using Checkout.Payments.Processor.Models;
 using System.Collections.Concurrent;
 
-namespace Checkout.PaymentGateway.Logic.Dal
+namespace Checkout.Payments.Processor.Dal
 {
     public class PaymentRepository : IPaymentRepository
     {
-        private ConcurrentDictionary<Guid, Payment> _storage = new ConcurrentDictionary<Guid, Payment>();
+        private ConcurrentDictionary<Guid, Models.Payment> _storage = new ConcurrentDictionary<Guid, Models.Payment>();
 
         private Dictionary<string, Guid> _idempotencyKeys = new Dictionary<string, Guid>();
         private object _lockObject = new object();
 
-        public Task<bool> Add(Payment payment)
+        public Task<bool> Add(Models.Payment payment)
         {
             payment.Id = Guid.NewGuid();
 
@@ -32,7 +32,7 @@ namespace Checkout.PaymentGateway.Logic.Dal
             return Task.FromResult(_storage.TryAdd(payment.Id.Value, payment));
         }
 
-        public Task<bool> Update(Payment payment)
+        public Task<bool> Update(Models.Payment payment)
         {
             if (payment.Id.HasValue)
             {
@@ -42,15 +42,15 @@ namespace Checkout.PaymentGateway.Logic.Dal
             return Task.FromResult(false);
         }
 
-        public Task<Payment> Get(Guid id)
+        public Task<Models.Payment> Get(Guid id)
         {
-            Payment payment = null;
+            Models.Payment payment = null;
             _storage.TryGetValue(id, out payment);
 
             return Task.FromResult(payment);
         }
 
-        public Task<Payment> GetByIdempotencyKey(string idempotemncyKey)
+        public Task<Models.Payment> GetByIdempotencyKey(string idempotemncyKey)
         {
             Guid guid = Guid.Empty;
             lock (_lockObject)

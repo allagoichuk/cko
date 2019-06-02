@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using Checkout.PaymentGateway.Logic.Dal;
-using Checkout.PaymentGateway.Logic.Models;
-using Checkout.PaymentGateway.Logic.Services;
-using Checkout.PaymentGateway.Logic.Utils;
-using Checkout.PaymentGateway.Logic.Validators;
+using Checkout.Payments.Processor.Dal;
+using Checkout.Payments.Processor.Models;
+using Checkout.Payments.Processor.Services;
+using Checkout.Payments.Processor.Utils;
+using Checkout.Payments.Processor.Validators;
 
-namespace Checkout.PaymentGateway.Logic.Managers
+namespace Checkout.Payments.Processor.Managers
 {
     public class PaymentManager : IPaymentManager
     {
@@ -21,12 +21,12 @@ namespace Checkout.PaymentGateway.Logic.Managers
             _bankClient = bankClient;
         }
 
-        public async Task<Payment> AddPayment(PaymentRequest paymentRequest)
+        public async Task<Models.Payment> AddPayment(PaymentRequest paymentRequest)
         {
-            Payment payment = null;
+            Models.Payment payment = null;
             try
             {
-                payment = new Payment
+                payment = new Models.Payment
                 {
                     Amount = paymentRequest.Amount,
                     Currency = paymentRequest.Currency,
@@ -65,7 +65,7 @@ namespace Checkout.PaymentGateway.Logic.Managers
             return $"{paymentRequest.IdempotencyKey}|{paymentRequest.CardNumber}|{paymentRequest.Currency}|{paymentRequest.Amount}|{paymentRequest.Cvv}|{paymentRequest.ExpiryDate}";
         }
 
-        public Task<Payment> GetPayment(Guid id)
+        public Task<Models.Payment> GetPayment(Guid id)
         {
             return _paymentRepository.Get(id);
         }

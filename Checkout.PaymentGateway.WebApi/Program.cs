@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace Checkout.PaymentGateway.WebApi
+namespace Checkout.Payments.Api
 {
     public class Program
     {

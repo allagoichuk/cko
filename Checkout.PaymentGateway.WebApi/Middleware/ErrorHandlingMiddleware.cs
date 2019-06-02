@@ -1,4 +1,4 @@
-﻿using Checkout.PaymentGateway.WebApi.Models;
+﻿using Checkout.Payments.Api.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -9,7 +9,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
-namespace Checkout.PaymentGateway.WebApi.Middleware
+namespace Checkout.Payments.Api.Middleware
 {
     public class ErrorHandlingMiddleware
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Checkout.PaymentGateway.WebApi.Models
+namespace Checkout.Payments.Api.Models
 {
     public enum ApiErrorCodes
     {

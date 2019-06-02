@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Checkout.PaymentGateway.Logic.Models
+namespace Checkout.Payments.Processor.Models
 {
     public enum PaymentProcessingErrorCodes
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Checkout.PaymentGateway.Logic.Utils
+namespace Checkout.Payments.Processor.Utils
 {
     public class CardNumberGuard : ICardNumberGuard
     {

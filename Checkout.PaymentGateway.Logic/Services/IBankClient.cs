@@ -1,13 +1,13 @@
-﻿using Checkout.PaymentGateway.Logic.Models;
+﻿using Checkout.Payments.Processor.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Checkout.PaymentGateway.Logic.Services
+namespace Checkout.Payments.Processor.Services
 {
     public interface IBankClient
     {
-        Task<PaymentProcessingResults> InitiatePayment(Payment payment);
+        Task<PaymentProcessingResults> InitiatePayment(Models.Payment payment);
     }
 }

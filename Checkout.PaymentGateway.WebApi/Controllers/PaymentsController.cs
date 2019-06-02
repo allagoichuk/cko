@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Checkout.PaymentGateway.Logic.Managers;
-using Checkout.PaymentGateway.Logic.Models;
-using Checkout.PaymentGateway.WebApi.Models;
-using Checkout.PaymentGateway.WebApi.Mappers;
+using Checkout.Payments.Processor.Managers;
+using Checkout.Payments.Processor.Models;
+using Checkout.Payments.Api.Models;
+using Checkout.Payments.Api.Mappers;
 using Microsoft.AspNetCore.Mvc;
-using Checkout.PaymentGateway.Logic.Validators;
+using Checkout.Payments.Processor.Validators;
 using System.Net;
 
-namespace Checkout.PaymentGateway.WebApi.Controllers
+namespace Checkout.Payments.Api.Controllers
 {
     [Route("api/[controller]")]
     public class PaymentsController : Controller

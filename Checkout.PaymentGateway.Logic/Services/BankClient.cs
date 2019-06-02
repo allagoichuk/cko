@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using Checkout.PaymentGateway.Logic.Models;
+using Checkout.Payments.Processor.Models;
 
-namespace Checkout.PaymentGateway.Logic.Services
+namespace Checkout.Payments.Processor.Services
 {
     public class BankClient : IBankClient
     {
         private const string FAILED_CARD_NUMBER = "4111111111111111";
 
-        public Task<PaymentProcessingResults> InitiatePayment(Payment payment)
+        public Task<PaymentProcessingResults> InitiatePayment(Models.Payment payment)
         {
             if (payment.CardNumber == FAILED_CARD_NUMBER)
             {

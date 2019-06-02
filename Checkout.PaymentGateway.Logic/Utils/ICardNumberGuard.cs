@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Checkout.PaymentGateway.Logic.Utils
+namespace Checkout.Payments.Processor.Utils
 {
     public interface ICardNumberGuard
     {

@@ -9,16 +9,16 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.Swagger;
-using Checkout.PaymentGateway.Logic.Dal;
-using Checkout.PaymentGateway.Logic.Managers;
-using Checkout.PaymentGateway.WebApi.Mappers;
-using Checkout.PaymentGateway.Logic.Validators;
-using Checkout.PaymentGateway.Logic.Utils;
-using Checkout.PaymentGateway.Logic.Services;
-using Checkout.PaymentGateway.WebApi.Middleware;
+using Checkout.Payments.Processor.Dal;
+using Checkout.Payments.Processor.Managers;
+using Checkout.Payments.Api.Mappers;
+using Checkout.Payments.Processor.Validators;
+using Checkout.Payments.Processor.Utils;
+using Checkout.Payments.Processor.Services;
+using Checkout.Payments.Api.Middleware;
 using Newtonsoft.Json;
 
-namespace Checkout.PaymentGateway.WebApi
+namespace Checkout.Payments.Api
 {
     public class Startup
     {

@@ -1,10 +1,10 @@
-﻿using Checkout.PaymentGateway.Logic.Models;
+﻿using Checkout.Payments.Processor.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Checkout.PaymentGateway.WebApi.Models
+namespace Checkout.Payments.Api.Models
 {
     public class PaymentApiModel
     {

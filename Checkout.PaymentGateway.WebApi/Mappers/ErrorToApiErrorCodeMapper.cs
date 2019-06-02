@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Checkout.PaymentGateway.Logic.Models;
-using Checkout.PaymentGateway.Logic.Validators;
-using Checkout.PaymentGateway.WebApi.Models;
+using Checkout.Payments.Processor.Models;
+using Checkout.Payments.Processor.Validators;
+using Checkout.Payments.Api.Models;
 
-namespace Checkout.PaymentGateway.WebApi.Mappers
+namespace Checkout.Payments.Api.Mappers
 {
     public class ErrorToApiErrorCodeMapper : IErrorToApiErrorCodeMapper
     {

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Checkout.PaymentGateway.WebApi.Models
+namespace Checkout.Payments.Api.Models
 {
     public class CreatePaymentApiModel
     {

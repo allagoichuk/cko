@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Checkout.PaymentGateway.Logic.Dal
+namespace Checkout.Payments.Processor.Dal
 {
     public class DuplicatePaymentRequestException : Exception
     {
