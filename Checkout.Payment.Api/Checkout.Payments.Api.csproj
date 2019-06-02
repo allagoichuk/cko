@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Checkout.PaymentGateway.Logic\Checkout.Payments.Processor.csproj" />
+    <ProjectReference Include="..\Checkout.Payment.Processor\Checkout.Payments.Processor.csproj" />
   </ItemGroup>
 
 </Project>

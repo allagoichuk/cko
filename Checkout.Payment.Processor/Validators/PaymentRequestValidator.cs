@@ -24,7 +24,7 @@ namespace Checkout.Payments.Processor.Validators
 
             if (paymentRequest.Amount <= 0)
             {
-                return new DataValidationResult(ValidationErrors.negative_or_zero__amount, "Amount should be more then 0");
+                return new DataValidationResult(ValidationErrors.negative_or_zero__amount, "Amount should be greater than 0");
             }
 
             var cardNumberValidationResults = _cardNumberValidator.Validate(paymentRequest.CardNumber, paymentRequest.ExpiryDate, paymentRequest.Cvv);

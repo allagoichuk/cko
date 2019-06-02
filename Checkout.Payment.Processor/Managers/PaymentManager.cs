@@ -24,33 +24,29 @@ namespace Checkout.Payments.Processor.Managers
         public async Task<Models.Payment> AddPayment(PaymentRequest paymentRequest)
         {
             Models.Payment payment = null;
-            try
+            payment = new Models.Payment
             {
-                payment = new Models.Payment
-                {
-                    Amount = paymentRequest.Amount,
-                    Currency = paymentRequest.Currency,
-                    RequestedOn = DateTime.Now,
-                    Status = PaymentStatus.Requested,
-                    CardNumber = paymentRequest.CardNumber,
-                    Cvv = paymentRequest.Cvv,
-                    ExpiryDate = paymentRequest.ExpiryDate,
-                    IdempotencyUniqueId = UniqueIdempotencyId(paymentRequest)
-                };
+                Amount = paymentRequest.Amount,
+                Currency = paymentRequest.Currency,
+                RequestedOn = DateTime.Now,
+                Status = PaymentStatus.Requested,
+                CardNumber = paymentRequest.CardNumber,
+                Cvv = paymentRequest.Cvv,
+                ExpiryDate = paymentRequest.ExpiryDate,
+                IdempotencyUniqueId = UniqueIdempotencyId(paymentRequest)
+            };
 
-                await _paymentRepository.Add(payment);
-
-                var response = await _bankClient.InitiatePayment(payment);
-
-                payment.Status = response.PaymentStatus;
-                payment.BankIdentifier = response.BankIdentifier;
-
-                await _paymentRepository.Update(payment);
-            }
-            catch(DuplicatePaymentRequestException)
+            if (await _paymentRepository.Add(payment) == StoreNewPaymentResult.DuplicateUniqueIdempotencyId)
             {
                 return await _paymentRepository.GetByIdempotencyKey(payment.IdempotencyUniqueId);
             }
+
+            var response = await _bankClient.InitiatePayment(payment);
+
+            payment.Status = response.PaymentStatus;
+            payment.BankIdentifier = response.BankIdentifier;
+
+            await _paymentRepository.Update(payment);
 
             return payment;
         }

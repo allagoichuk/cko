@@ -14,7 +14,7 @@ namespace Checkout.Payments.Processor.Dal
         private Dictionary<string, Guid> _idempotencyKeys = new Dictionary<string, Guid>();
         private object _lockObject = new object();
 
-        public Task<bool> Add(Models.Payment payment)
+        public Task<StoreNewPaymentResult> Add(Models.Payment payment)
         {
             payment.Id = Guid.NewGuid();
 
@@ -23,13 +23,15 @@ namespace Checkout.Payments.Processor.Dal
                 lock (_lockObject)
                 {
                     if (_idempotencyKeys.ContainsKey(payment.IdempotencyUniqueId))
-                        throw new DuplicatePaymentRequestException();
+                        return Task.FromResult(StoreNewPaymentResult.DuplicateUniqueIdempotencyId);
 
                     _idempotencyKeys.Add(payment.IdempotencyUniqueId, payment.Id.Value);
                 }
             }
 
-            return Task.FromResult(_storage.TryAdd(payment.Id.Value, payment));
+            _storage.TryAdd(payment.Id.Value, payment);
+            
+            return Task.FromResult(StoreNewPaymentResult.Success);
         }
 
         public Task<bool> Update(Models.Payment payment)

@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2046
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Checkout.Payments.Api", "Checkout.PaymentGateway.WebApi\Checkout.Payments.Api.csproj", "{6A510AA7-212B-4AD1-BD22-FFE065034044}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Checkout.Payments.Api", "Checkout.Payment.Api\Checkout.Payments.Api.csproj", "{6A510AA7-212B-4AD1-BD22-FFE065034044}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Checkout.Payments.Processor", "Checkout.PaymentGateway.Logic\Checkout.Payments.Processor.csproj", "{F1829199-8771-4E76-B8AF-D5349D5454FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Checkout.Payments.Processor", "Checkout.Payment.Processor\Checkout.Payments.Processor.csproj", "{F1829199-8771-4E76-B8AF-D5349D5454FA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

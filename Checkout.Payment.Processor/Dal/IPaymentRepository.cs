@@ -8,7 +8,7 @@ namespace Checkout.Payments.Processor.Dal
 {
     public interface IPaymentRepository
     {
-        Task<bool> Add(Models.Payment payment);
+        Task<StoreNewPaymentResult> Add(Models.Payment payment);
         Task<bool> Update(Models.Payment payment);
         Task<Models.Payment> Get(Guid id);
         Task<Models.Payment> GetByIdempotencyKey(string idempotemncyKey);
