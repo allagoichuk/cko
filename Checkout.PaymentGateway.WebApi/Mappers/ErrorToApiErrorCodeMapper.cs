@@ -23,7 +23,7 @@ namespace Checkout.PaymentGateway.WebApi.Mappers
                 case ValidationErrors.incorrect_expiry_date_format:return ApiErrorCodes.incorrect_card_data_format;
             }
 
-            return ApiErrorCodes.unspecified;
+            return ApiErrorCodes.unknown;
         }
     }
 }

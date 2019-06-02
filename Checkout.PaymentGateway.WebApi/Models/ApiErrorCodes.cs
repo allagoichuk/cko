@@ -12,6 +12,6 @@ namespace Checkout.PaymentGateway.WebApi.Models
         incorrect_card_data_format,
         empty_currency,
         negative_or_zero__amount,
-        unspecified
+        unknown
     }
 }

@@ -15,6 +15,8 @@ using Checkout.PaymentGateway.WebApi.Mappers;
 using Checkout.PaymentGateway.Logic.Validators;
 using Checkout.PaymentGateway.Logic.Utils;
 using Checkout.PaymentGateway.Logic.Services;
+using Checkout.PaymentGateway.WebApi.Middleware;
+using Newtonsoft.Json;
 
 namespace Checkout.PaymentGateway.WebApi
 {
@@ -67,11 +69,7 @@ namespace Checkout.PaymentGateway.WebApi
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Payments V1");
             });
 
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-
+            app.UseMiddleware<ErrorHandlingMiddleware>();
             app.UseMvc();
         }
     }
