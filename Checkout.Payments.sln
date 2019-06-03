@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Checkout.Payments.Api", "Ch
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Checkout.Payments.Processor", "Checkout.Payment.Processor\Checkout.Payments.Processor.csproj", "{F1829199-8771-4E76-B8AF-D5349D5454FA}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{AD39E11B-5A95-4C1F-B507-B3412122D919}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Checkout.Payments.Api.UnitTests", "tests\Checkout.Payments.Api.UnitTests\Checkout.Payments.Api.UnitTests.csproj", "{759C8363-E185-4081-80F6-EDA083829494}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,11 +25,18 @@ Global
 		{F1829199-8771-4E76-B8AF-D5349D5454FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1829199-8771-4E76-B8AF-D5349D5454FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1829199-8771-4E76-B8AF-D5349D5454FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{759C8363-E185-4081-80F6-EDA083829494}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{759C8363-E185-4081-80F6-EDA083829494}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{759C8363-E185-4081-80F6-EDA083829494}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{759C8363-E185-4081-80F6-EDA083829494}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BAF28811-4A73-4183-AEE3-6674A65C811A}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{759C8363-E185-4081-80F6-EDA083829494} = {AD39E11B-5A95-4C1F-B507-B3412122D919}
 	EndGlobalSection
 EndGlobal

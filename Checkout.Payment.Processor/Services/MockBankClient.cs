@@ -6,7 +6,7 @@ using Checkout.Payments.Processor.Models;
 
 namespace Checkout.Payments.Processor.Services
 {
-    public class BankClient : IBankClient
+    public class MockBankClient : IBankClient
     {
         private const string FAILED_CARD_NUMBER = "4111111111111111";
 

@@ -51,10 +51,17 @@ namespace Checkout.Payments.Api
             services.AddScoped<IPaymentManager, PaymentManager>();
             services.AddScoped<ICardDataValidator, CardDataValidator>();
             services.AddScoped<ICardNumberGuard, CardNumberGuard>();
-            services.AddScoped<IBankClient, BankClient>();
 
             //as it is in-memory storage right now it should be singleton, one DB is plugged, it should Scoped
             services.AddSingleton<IPaymentRepository, PaymentRepository>();
+
+            if (Configuration["BankProvider"] == "Mock")
+                services.AddScoped<IBankClient, MockBankClient>();
+            else
+            {
+                services.AddScoped<IBankClient, RestBankClient>();
+            }
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
