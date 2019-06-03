@@ -9,7 +9,6 @@ using Checkout.Payments.Api.Mappers;
 using Microsoft.AspNetCore.Mvc;
 using Checkout.Payments.Processor.Validators;
 using System.Net;
-
 namespace Checkout.Payments.Api.Controllers
 {
     [Route("api/[controller]")]
@@ -19,7 +18,6 @@ namespace Checkout.Payments.Api.Controllers
         private readonly IPaymentMapper _paymentMapper;
         private readonly IPaymentRequestValidator _paymentRequestValidator;
         private readonly IErrorToApiErrorCodeMapper _errorToApiErrorCodeMapper;
-
 
         public PaymentsController(IPaymentManager paymentManager, IPaymentMapper paymentMapper, IErrorToApiErrorCodeMapper errorToApiErrorCodeMapper, IPaymentRequestValidator paymentRequestValidator)
         {

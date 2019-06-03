@@ -55,8 +55,18 @@ namespace Checkout.Payments.Api
             //as it is in-memory storage right now it should be singleton, one DB is plugged, it should Scoped
             services.AddSingleton<IPaymentRepository, PaymentRepository>();
 
-            if (Configuration["BankProvider"] == "Mock")
-                services.AddScoped<IBankClient, MockBankClient>();
+            if (Configuration["BankProvider:Type"] == "Mock")
+            {
+                var mockedCards = new Dictionary<string, string>();
+                foreach(var setting in Configuration.AsEnumerable())
+                {
+                    if (setting.Key.Contains("MockCardNumber") && !mockedCards.ContainsKey(setting.Key))
+                    {
+                        mockedCards.Add(setting.Key, setting.Value);
+                    }
+                }
+                services.AddScoped<IBankClient, MockBankClient>(client => new MockBankClient(mockedCards));
+            }
             else
             {
                 services.AddScoped<IBankClient, RestBankClient>();

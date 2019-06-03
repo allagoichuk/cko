@@ -8,23 +8,34 @@ namespace Checkout.Payments.Processor.Services
 {
     public class MockBankClient : IBankClient
     {
-        private const string FAILED_CARD_NUMBER = "4111111111111111";
+        private Dictionary<string, string> _mockedCards;
+
+        public MockBankClient(Dictionary<string, string> mockedCards)
+        {
+            _mockedCards = mockedCards;
+        }
 
         public Task<PaymentProcessingResults> InitiatePayment(Models.Payment payment)
         {
-            if (payment.CardNumber == FAILED_CARD_NUMBER)
+            var status = PaymentStatus.Declined;
+
+            if (_mockedCards != null)
             {
-                return Task.FromResult(new PaymentProcessingResults
+                foreach (var card in _mockedCards)
                 {
-                    PaymentStatus = PaymentStatus.Declined,
-                    Error = PaymentProcessingErrorCodes.no_credit,
-                    BankIdentifier = Guid.NewGuid().ToString()
-                });
+                    if (card.Value == payment.CardNumber)
+                    {
+                        var statusName = card.Key.Replace("BankProvider:MockCardNumber", "");
+                        Enum.TryParse(statusName, out status);
+
+                        break;
+                    }
+                }
             }
 
             return Task.FromResult(new PaymentProcessingResults
             {
-                PaymentStatus = PaymentStatus.Authorized,
+                PaymentStatus = status,
                 Error = PaymentProcessingErrorCodes.none,
                 BankIdentifier = Guid.NewGuid().ToString()
             });
