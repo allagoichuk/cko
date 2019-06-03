@@ -16,7 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Checkout.Payment.Api\Checkout.Payments.Api.csproj" />
+    <ProjectReference Include="..\..\Checkout.Payments.Api\Checkout.Payments.Api.csproj" />
+    <ProjectReference Include="..\..\Checkout.Payments.Processor\Checkout.Payments.Processor.csproj" />
   </ItemGroup>
 
 </Project>
