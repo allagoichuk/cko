@@ -1,0 +1,30 @@
+version: '3.4'
+
+services:
+
+  payments:
+    image: paymentsapi:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:80"     
+    environment:
+      BankProvider__MockCardNumberDeclined: "4111111111111115"
+      #Logging__Console__LogLevel__Default: "Information" 
+  
+  integration_tests:
+    image: alpine-curl:latest
+    build:
+      context: .
+      dockerfile: Dockerfile-curl
+    command: bash -c "sleep 1; ./tests.sh"
+    volumes:
+      - ./tests/integration-tests.sh:/tests.sh
+    environment:
+      PAYMENTS_URL: "http://payments/api/Payments"
+      MockCardNumberDeclined: "4111111111111115"
+
+         
+    
+     
