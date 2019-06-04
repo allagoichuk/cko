@@ -18,7 +18,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile-curl
-    command: bash -c "sleep 1; ./tests.sh"
+    command: bash -c "sleep 1; chmod +x ./tests.sh; ./tests.sh"
     volumes:
       - ./tests/integration-tests.sh:/tests.sh
     environment:
