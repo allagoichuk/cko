@@ -20,7 +20,7 @@ curl -s -X POST $PAYMENTS_URL \
     -H "Content-Type: application/json" \
     -d "{ 'amount': 10, 
           'currency': 'USD', 
-          'cardNumber': '$MockCardNumberDeclined', 
+          'cardNumber': '$MockCardNumberAuthorized', 
           'expiryDate': '08/12', 
           'cvv': '123', 
           'idempotencyKey': 'string' }" && echo

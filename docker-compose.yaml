@@ -10,7 +10,7 @@ services:
     ports:
       - "8000:80"     
     environment:
-      BankProvider__MockCardNumberDeclined: "4111111111111115"
+      BankProvider__MockCardNumberAuthorized: "4111111111111115"
       #Logging__Console__LogLevel__Default: "Information" 
   
   integration_tests:
@@ -23,7 +23,7 @@ services:
       - ./tests/integration-tests.sh:/tests.sh
     environment:
       PAYMENTS_URL: "http://payments/api/Payments"
-      MockCardNumberDeclined: "4111111111111115"
+      MockCardNumberAuthorized: "4111111111111115"
 
          
     
