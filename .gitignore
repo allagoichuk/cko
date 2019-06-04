@@ -264,16 +264,3 @@ paket-files/
 *.sln.iml
 *.orig
 !lib/
-/Iris.DbSchema.TestRuleSystem.VersionZero/Iris.DbSchema.TestRuleSystem.VersionZero.jfm
-/Iris.DbSchema.Settings.VersionZero/Iris.DbSchema.Settings.VersionZero.jfm
-/Iris.DbSchema.RuleSystem.VersionZero/Iris.DbSchema.RuleSystem.VersionZero.jfm
-/Iris.DbSchema.Pms.VersionZero/Iris.DbSchema.Pms.VersionZero.jfm
-/Iris.DbSchema.OrderBasket.VersionZero/Iris.DbSchema.OrderBasket.VersionZero.jfm
-/Iris.DbSchema.Monitoring.VersionZero/Iris.DbSchema.Monitoring.VersionZero.jfm
-/Iris.DbSchema.Logging.VersionZero/Iris.DbSchema.Logging.VersionZero.jfm
-/Iris.DbSchema.Core.VersionZero/Iris.DbSchema.Core.VersionZero.jfm
-/Iris.DbSchema.Cms.VersionZero/Iris.DbSchema.Cms.VersionZero.jfm
-
-# React
-/IreckonU.Manager.Web/Scripts/reportsnew/dist/
-/IreckonU.Manager.Web/Scripts/transactionalreports/dist
